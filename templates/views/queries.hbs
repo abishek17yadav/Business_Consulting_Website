@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    {{!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"> --}}
+    <title>Document</title>
+</head>
+<body>
+    
+<h1 style="text-align: center; color:rgba(255, 0, 0, 0.871); font-weight:bold">Any queries?</h1>
+ <div class="chat-container" style="width: 500px; margin: 50px auto; border: 1px solid #ccc; border-radius: 5px; overflow: hidden;">
+        <div class="chat-messages" id="chat-messages" style="height: 300px; overflow-y: scroll; padding: 10px;"></div>
+        <h3 style="background-color:gray;">Need any help?</h3>
+        <img src="images/about.svg" alt="">
+        <input type="text" class="chat-input" id="user-input" placeholder="Type your message..." style="width: calc(100% - 20px); padding: 5px 10px; border: 1px solid #ccc; border-radius: 5px; margin: 10px; font-weight:bold">
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+
+        // Function to add user message to chat
+        function addUserMessage(message) {
+            const userDiv = document.createElement('div');
+            userDiv.classList.add('user-message');
+            userDiv.textContent = message;
+            chatMessages.appendChild(userDiv);
+        }
+
+        // Function to add bot response to chat
+        function addBotMessage(message) {
+            const botDiv = document.createElement('div');
+            botDiv.classList.add('bot-message');
+            botDiv.textContent = message;
+            chatMessages.appendChild(botDiv);
+        }
+
+        // Function to handle user input
+        function handleUserInput() {
+            const message = userInput.value.trim();
+            if (message !== '') {
+                addUserMessage(message);
+                handleBotResponse(message);
+                userInput.value = '';
+            }
+        }
+
+        // Function to generate bot response based on user input
+        function handleBotResponse(userInput) {
+            // Simple bot logic to provide responses based on user input
+            let response;
+            switch (userInput.toLowerCase()) {
+                case 'hi':
+                    response = 'Hi there! How can I help you today?';
+                    break;
+                case 'hii':
+                    response = 'Hi there! How can I help you today?';
+                    break;
+                case 'good':
+                    response = 'A very good morning how may i help you?';
+                    break;
+                case 'hello':
+                    response = 'Hi there! How can I help you today?';
+                    break;
+                case 'pricing':
+                    response = 'Please visit our pricing page for information on our services.';
+                    break;
+                case 'contact':
+                    response = 'You can contact us at support@example.com or call us at 123-456-7890.';
+                    break;
+                case 'services':
+                    response = 'We offer a range of services including consulting, marketing, and web development.';
+                    break;
+                case 'location':
+                    response = 'Our office is located at 123 Main Street, City, Country.';
+                    break;
+                default:
+                    response = "I'm sorry, I didn't understand that. Please try again.";
+            }
+            setTimeout(() => addBotMessage(response), 1000);
+        }
+
+        // Event listener for user input
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleUserInput();
+            }
+        });
+    </script>
+
+
+
+    <script src="../jq/jquery.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/jacascript"></script>
+</body>
+</html>
